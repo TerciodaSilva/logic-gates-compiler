@@ -33,7 +33,7 @@ tokens = (
 # Regular expression rules for simple tokens
 
 t_porta_log       = r'portalogica'
-t_id              = r'(^[a-zA-Z0-9_]+)'
+t_id              = r'[a-zA-Z_][a-zA-Z0-9_]*'
 t_atrib           = r'='
 t_abre_chave      = r'{'
 t_chave_valor     = r':'
@@ -42,7 +42,6 @@ t_virgula         = r','
 t_ne              = r'numero_de_entradas'
 t_tv              = r'tabela_verdade'
 t_abre_colchete   = r'\['
-t_bin             = r'1 | 0'
 t_fecha_colchete  = r'\]'
 t_fecha_chave     = r'}'
 t_sinal           = r'sinal'
@@ -51,52 +50,52 @@ t_abre_parentese  = r'\('
 t_fecha_parentese = r'\)'
 t_imprimir        = r'imprimir'
 
-# Define a rule so we can track line numbers
+# Regra para novas linhas
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-# A string containing ignored characters (spaces and tabs)
+# caracteres ignorados: espaços e tabulações
 t_ignore  = ' \t'
 
-# Error handling rule
+# regra para tratar erros
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-# Build the lexer
+# contruir o lexer
 lexer = lex.lex()
 
-# Test it out
+# entrada de teste
 data = '''
 portalogica porta_and = {
 	numero_de_entradas: 2,
 	tabela_verdade: {
-	[0, 0] : 0,
-[0, 1] : 0,
-[1, 0] : 0,
-[1, 1] : 1
-}
+	    [0, 0] : 0,
+        [0, 1] : 0,
+        [1, 0] : 0,
+        [1, 1] : 1
+    }
 }
 
 portalogica porta_not = {
 	numero_de_entradas: 10,
 	tabela_verdade: {
-	[0] : 1,
-[1] : 0,
-}
+	    [0] : 1,
+        [1] : 0,
+    }
 }
 
-sinal 1variavel1 = exec(porta_and, [1, 1])
+sinal variavel1 = exec(porta_and, [1, 1])
 sinal variavel2 = exec(porta_not, [variavel1])
 imprimir(variavel2)
 
 '''
 
-# Give the lexer some input
+# input de teste para o lexer
 lexer.input(data)
 
-# Tokenize
+# tokenização
 while True:
     tok = lexer.token()
     if not tok:
