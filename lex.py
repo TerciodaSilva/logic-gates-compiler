@@ -11,6 +11,8 @@ import ply.lex as lex
 # List of token names.   This is always required
 tokens = (
     "porta_log",
+    "sinal",
+    "bin",
     "id",
     "atrib",
     "abre_chave",
@@ -20,10 +22,8 @@ tokens = (
     "ne",
     "tv",
     "abre_colchete",
-    "bin",
     "fecha_colchete",
     "fecha_chave",
-    "sinal",
     "exec",
     "abre_parentese",
     "fecha_parentese",
@@ -32,23 +32,24 @@ tokens = (
 
 # Regular expression rules for simple tokens
 
-t_porta_log       = r'portalogica'
-t_id              = r'[a-zA-Z_][a-zA-Z0-9_]*'
+t_porta_log       = r'Portalogica'
+t_sinal           = r'Sinal'
+t_bin             = r'[0 | 1]+b'
+t_id              = r'(?!\d+)[a-z0-9_]+'
 t_atrib           = r'='
 t_abre_chave      = r'{'
 t_chave_valor     = r':'
-t_num             = r'[1-9][0-9]*'
+t_num             = r'\d+(?!\w+)'
 t_virgula         = r','
 t_ne              = r'numero_de_entradas'
 t_tv              = r'tabela_verdade'
 t_abre_colchete   = r'\['
 t_fecha_colchete  = r'\]'
 t_fecha_chave     = r'}'
-t_sinal           = r'sinal'
-t_exec            = r'exec'
+t_exec            = r'Exec'
 t_abre_parentese  = r'\('
 t_fecha_parentese = r'\)'
-t_imprimir        = r'imprimir'
+t_imprimir        = r'Imprimir'
 
 # Regra para novas linhas
 def t_newline(t):
@@ -68,27 +69,27 @@ lexer = lex.lex()
 
 # entrada de teste
 data = '''
-portalogica porta_and = {
+Portalogica porta_and = {
 	numero_de_entradas: 2,
 	tabela_verdade: {
-	    [0, 0] : 0,
-        [0, 1] : 0,
-        [1, 0] : 0,
-        [1, 1] : 1
+	    [0b, 0b] : 0b,
+        [0b, 1b] : 0b,
+        [1b, 0b] : 0b,
+        [1b, 1b] : 1b
     }
 }
 
-portalogica porta_not = {
+Portalogica porta_not = {
 	numero_de_entradas: 10,
 	tabela_verdade: {
-	    [0] : 1,
-        [1] : 0,
+	    [0b] : 1b,
+        [1b] : 0b,
     }
 }
 
-sinal variavel1 = exec(porta_and, [1, 1])
-sinal variavel2 = exec(porta_not, [variavel1])
-imprimir(variavel2)
+Sinal variavel1 = Exec(porta_and, [1b, 1b])
+Sinal variavel2 = Exec(porta_not, [variavel1])
+Imprimir(variavel2)
 
 '''
 

@@ -1,0 +1,188 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    abre_chave
+    abre_colchete
+    bin
+    chave_valor
+    exec
+    fecha_chave
+    fecha_colchete
+    ne
+    porta_log
+    tv
+    virgula
+
+Grammar
+
+Rule 0     S' -> start
+Rule 1     start -> expression
+Rule 2     start -> empty
+Rule 3     expression -> impressao
+Rule 4     expression -> atribuicao
+Rule 5     empty -> <empty>
+Rule 6     impressao -> imprimir abre_parentese num fecha_parentese
+Rule 7     impressao -> imprimir abre_parentese id fecha_parentese
+Rule 8     atribuicao -> sinal id atrib num
+
+Terminals, with rules where they appear
+
+abre_chave           : 
+abre_colchete        : 
+abre_parentese       : 6 7
+atrib                : 8
+bin                  : 
+chave_valor          : 
+error                : 
+exec                 : 
+fecha_chave          : 
+fecha_colchete       : 
+fecha_parentese      : 6 7
+id                   : 7 8
+imprimir             : 6 7
+ne                   : 
+num                  : 6 8
+porta_log            : 
+sinal                : 8
+tv                   : 
+virgula              : 
+
+Nonterminals, with rules where they appear
+
+atribuicao           : 4
+empty                : 2
+expression           : 1
+impressao            : 3
+start                : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . expression
+    (2) start -> . empty
+    (3) expression -> . impressao
+    (4) expression -> . atribuicao
+    (5) empty -> .
+    (6) impressao -> . imprimir abre_parentese num fecha_parentese
+    (7) impressao -> . imprimir abre_parentese id fecha_parentese
+    (8) atribuicao -> . sinal id atrib num
+
+    $end            reduce using rule 5 (empty -> .)
+    imprimir        shift and go to state 6
+    sinal           shift and go to state 7
+
+    start                          shift and go to state 1
+    expression                     shift and go to state 2
+    empty                          shift and go to state 3
+    impressao                      shift and go to state 4
+    atribuicao                     shift and go to state 5
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> expression .
+
+    $end            reduce using rule 1 (start -> expression .)
+
+
+state 3
+
+    (2) start -> empty .
+
+    $end            reduce using rule 2 (start -> empty .)
+
+
+state 4
+
+    (3) expression -> impressao .
+
+    $end            reduce using rule 3 (expression -> impressao .)
+
+
+state 5
+
+    (4) expression -> atribuicao .
+
+    $end            reduce using rule 4 (expression -> atribuicao .)
+
+
+state 6
+
+    (6) impressao -> imprimir . abre_parentese num fecha_parentese
+    (7) impressao -> imprimir . abre_parentese id fecha_parentese
+
+    abre_parentese  shift and go to state 8
+
+
+state 7
+
+    (8) atribuicao -> sinal . id atrib num
+
+    id              shift and go to state 9
+
+
+state 8
+
+    (6) impressao -> imprimir abre_parentese . num fecha_parentese
+    (7) impressao -> imprimir abre_parentese . id fecha_parentese
+
+    num             shift and go to state 10
+    id              shift and go to state 11
+
+
+state 9
+
+    (8) atribuicao -> sinal id . atrib num
+
+    atrib           shift and go to state 12
+
+
+state 10
+
+    (6) impressao -> imprimir abre_parentese num . fecha_parentese
+
+    fecha_parentese shift and go to state 13
+
+
+state 11
+
+    (7) impressao -> imprimir abre_parentese id . fecha_parentese
+
+    fecha_parentese shift and go to state 14
+
+
+state 12
+
+    (8) atribuicao -> sinal id atrib . num
+
+    num             shift and go to state 15
+
+
+state 13
+
+    (6) impressao -> imprimir abre_parentese num fecha_parentese .
+
+    $end            reduce using rule 6 (impressao -> imprimir abre_parentese num fecha_parentese .)
+
+
+state 14
+
+    (7) impressao -> imprimir abre_parentese id fecha_parentese .
+
+    $end            reduce using rule 7 (impressao -> imprimir abre_parentese id fecha_parentese .)
+
+
+state 15
+
+    (8) atribuicao -> sinal id atrib num .
+
+    $end            reduce using rule 8 (atribuicao -> sinal id atrib num .)
+
