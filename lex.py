@@ -1,11 +1,5 @@
 import ply.lex as lex
 
-# ------------------------------------------------------------
-# calclex.py
-#
-# tokenizer for a simple expression evaluator for
-# numbers and +,-,*,/
-# ------------------------------------------------------------
 import ply.lex as lex
 
 # List of token names.   This is always required
@@ -27,7 +21,8 @@ tokens = (
     "exec",
     "abre_parentese",
     "fecha_parentese",
-    "imprimir"
+    "imprimir",
+    "eol"
 )
 
 # Regular expression rules for simple tokens
@@ -41,8 +36,8 @@ t_abre_chave      = r'{'
 t_chave_valor     = r':'
 t_num             = r'\d+(?!\w+)'
 t_virgula         = r','
-t_ne              = r'numero_de_entradas'
-t_tv              = r'tabela_verdade'
+t_ne              = r'Numero_de_entradas'
+t_tv              = r'Tabela_verdade'
 t_abre_colchete   = r'\['
 t_fecha_colchete  = r'\]'
 t_fecha_chave     = r'}'
@@ -50,6 +45,7 @@ t_exec            = r'Exec'
 t_abre_parentese  = r'\('
 t_fecha_parentese = r'\)'
 t_imprimir        = r'Imprimir'
+t_eol             = r';'
 
 # Regra para novas linhas
 def t_newline(t):
@@ -70,26 +66,26 @@ lexer = lex.lex()
 # entrada de teste
 data = '''
 Portalogica porta_and = {
-	numero_de_entradas: 2,
-	tabela_verdade: {
+	Numero_de_entradas: 2,
+	Tabela_verdade: {
 	    [0b, 0b] : 0b,
         [0b, 1b] : 0b,
         [1b, 0b] : 0b,
         [1b, 1b] : 1b
-    }
-}
+    },
+};
 
 Portalogica porta_not = {
-	numero_de_entradas: 10,
-	tabela_verdade: {
+	Numero_de_entradas: 10,
+	Tabela_verdade: {
 	    [0b] : 1b,
         [1b] : 0b,
-    }
-}
+    },
+};
 
-Sinal variavel1 = Exec(porta_and, [1b, 1b])
-Sinal variavel2 = Exec(porta_not, [variavel1])
-Imprimir(variavel2)
+Sinal variavel1 = Exec(porta_and, [1b, 1b]);
+Sinal variavel2 = Exec(porta_not, [variavel1]);
+Imprimir(variavel2);
 
 '''
 
