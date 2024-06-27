@@ -2,6 +2,7 @@ import logging
 import ply.yacc as yacc
 
 from lex import tokens
+from lex import lexed_code
 
 # Início da gramática
 def p_start(p):
@@ -10,7 +11,7 @@ def p_start(p):
     p[0] = p[1]
 
 def p_end_of_line(p):
-    'end_of_line : eol'
+    '''end_of_line : eol start'''
     pass
 
 # Expressões possíveis
@@ -82,43 +83,14 @@ def p_tipo(p):
     p[0] = p[1]
 
 def p_error(p):
-    print(f"Erro de sintaxe em '{p.value}'")
+    print(f"Erro de sintaxe em '{p}'")
 
 # Build the parser
 log = logging.getLogger()
-parser = yacc.yacc()
+parser = yacc.yacc(debug=True, debuglog=log)
 
 print('\n----------ANÁLISE SINTÁTICA----------')
-s = '''
-Portalogica porta_and = {
-	Numero_de_entradas: 2,
-	Tabela_verdade: {
-	    [0b, 0b] : 0b,
-        [0b, 1b] : 0b,
-        [1b, 0b] : 0b,
-        [1b, 1b] : 1b
-    },
-};
 
-Portalogica porta_not = {
-	Numero_de_entradas: 10,
-	Tabela_verdade: {
-	    [0b] : 1b,
-        [1b] : 0b
-    },
-};
-
-Sinal variavel1 = Exec(porta_and, [1b, 1b]);
-Sinal variavel2 = Exec(porta_not, [variavel1]);
-Imprimir(variavel2);
-'''
-
-
-s = s.replace('\n', '').replace('\t', ' ').split(';')
-
-for line in s:
-  if len(line) == 0:
-      continue
-  line = line+';'
-  result = parser.parse(line, debug=log)
-  print(result)
+print(lexed_code)
+result = parser.parse(lexed_code)
+print(result)

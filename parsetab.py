@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'abre_chave abre_colchete abre_parentese atrib bin chave_valor eol exec fecha_chave fecha_colchete fecha_parentese id imprimir ne num porta_log sinal tv virgulastart : expression end_of_line\n             | emptyend_of_line : eolexpression : impressao\n                  | atribuicao\n                  | execempty :impressao : imprimir abre_parentese num fecha_parentese \n                | imprimir abre_parentese id fecha_parenteseexecutar : exec abre_parentese id virgula vetor fecha_parentesevetor : abre_colchete items fecha_colcheteitems : item virgula items \n            | itemitem : bin\n            | id\n            | entradas_saida\n            atribuicao : tipo id atrib atribuiveisatribuiveis : num\n                    | executar\n                    | porta_logicaporta_logica : abre_chave numero_de_entradas virgula tabela_verdade virgula fecha_chavenumero_de_entradas : ne chave_valor numtabela_verdade : tv chave_valor abre_chave items fecha_chaveentradas_saida : vetor chave_valor bintipo : sinal\n            | porta_log'
+_lr_signature = 'abre_chave abre_colchete abre_parentese atrib bin chave_valor eol exec fecha_chave fecha_colchete fecha_parentese id imprimir ne num porta_log sinal tv virgulastart : expression end_of_line\n             | emptyend_of_line : eol startexpression : impressao\n                  | atribuicao\n                  | execempty :impressao : imprimir abre_parentese num fecha_parentese \n                | imprimir abre_parentese id fecha_parenteseexecutar : exec abre_parentese id virgula vetor fecha_parentesevetor : abre_colchete items fecha_colcheteitems : item virgula items \n            | itemitem : bin\n            | id\n            | entradas_saida\n            atribuicao : tipo id atrib atribuiveisatribuiveis : num\n                    | executar\n                    | porta_logicaporta_logica : abre_chave numero_de_entradas virgula tabela_verdade virgula fecha_chavenumero_de_entradas : ne chave_valor numtabela_verdade : tv chave_valor abre_chave items fecha_chaveentradas_saida : vetor chave_valor bintipo : sinal\n            | porta_log'
     
-_lr_action_items = {'exec':([0,17,],[6,24,]),'$end':([0,1,3,11,12,],[-7,0,-2,-1,-3,]),'imprimir':([0,],[7,]),'sinal':([0,],[9,]),'porta_log':([0,],[10,]),'eol':([2,4,5,6,18,19,20,21,22,23,40,47,],[12,-4,-5,-6,-8,-9,-17,-18,-19,-20,-10,-21,]),'abre_parentese':([7,24,],[13,26,]),'id':([8,9,10,13,26,37,48,50,],[14,-25,-26,16,29,44,44,44,]),'num':([13,17,31,],[15,21,35,]),'atrib':([14,],[17,]),'fecha_parentese':([15,16,36,49,],[18,19,40,-11,]),'abre_chave':([17,39,],[25,48,]),'ne':([25,],[28,]),'virgula':([27,29,33,35,42,43,44,45,54,55,],[30,32,38,-22,50,-14,-15,-16,-24,-23,]),'chave_valor':([28,34,46,49,],[31,39,51,-11,]),'tv':([30,],[34,]),'abre_colchete':([32,37,48,50,],[37,37,37,37,]),'bin':([37,48,50,51,],[43,43,43,54,]),'fecha_chave':([38,42,43,44,45,52,53,54,],[47,-13,-14,-15,-16,55,-12,-24,]),'fecha_colchete':([41,42,43,44,45,53,54,],[49,-13,-14,-15,-16,-12,-24,]),}
+_lr_action_items = {'exec':([0,12,18,],[6,6,25,]),'$end':([0,1,3,11,12,15,],[-7,0,-2,-1,-7,-3,]),'imprimir':([0,12,],[7,7,]),'sinal':([0,12,],[9,9,]),'porta_log':([0,12,],[10,10,]),'eol':([2,4,5,6,19,20,21,22,23,24,41,48,],[12,-4,-5,-6,-8,-9,-17,-18,-19,-20,-10,-21,]),'abre_parentese':([7,25,],[13,27,]),'id':([8,9,10,13,27,38,49,51,],[14,-25,-26,17,30,45,45,45,]),'num':([13,18,32,],[16,22,36,]),'atrib':([14,],[18,]),'fecha_parentese':([16,17,37,50,],[19,20,41,-11,]),'abre_chave':([18,40,],[26,49,]),'ne':([26,],[29,]),'virgula':([28,30,34,36,43,44,45,46,55,56,],[31,33,39,-22,51,-14,-15,-16,-24,-23,]),'chave_valor':([29,35,47,50,],[32,40,52,-11,]),'tv':([31,],[35,]),'abre_colchete':([33,38,49,51,],[38,38,38,38,]),'bin':([38,49,51,52,],[44,44,44,55,]),'fecha_chave':([39,43,44,45,46,53,54,55,],[48,-13,-14,-15,-16,56,-12,-24,]),'fecha_colchete':([42,43,44,45,46,54,55,],[50,-13,-14,-15,-16,-12,-24,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'start':([0,],[1,]),'expression':([0,],[2,]),'empty':([0,],[3,]),'impressao':([0,],[4,]),'atribuicao':([0,],[5,]),'tipo':([0,],[8,]),'end_of_line':([2,],[11,]),'atribuiveis':([17,],[20,]),'executar':([17,],[22,]),'porta_logica':([17,],[23,]),'numero_de_entradas':([25,],[27,]),'tabela_verdade':([30,],[33,]),'vetor':([32,37,48,50,],[36,46,46,46,]),'items':([37,48,50,],[41,52,53,]),'item':([37,48,50,],[42,42,42,]),'entradas_saida':([37,48,50,],[45,45,45,]),}
+_lr_goto_items = {'start':([0,12,],[1,15,]),'expression':([0,12,],[2,2,]),'empty':([0,12,],[3,3,]),'impressao':([0,12,],[4,4,]),'atribuicao':([0,12,],[5,5,]),'tipo':([0,12,],[8,8,]),'end_of_line':([2,],[11,]),'atribuiveis':([18,],[21,]),'executar':([18,],[23,]),'porta_logica':([18,],[24,]),'numero_de_entradas':([26,],[28,]),'tabela_verdade':([31,],[34,]),'vetor':([33,38,49,51,],[37,47,47,47,]),'items':([38,49,51,],[42,53,54,]),'item':([38,49,51,],[43,43,43,]),'entradas_saida':([38,49,51,],[46,46,46,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,30 +27,30 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> start","S'",1,None,None,None),
-  ('start -> expression end_of_line','start',2,'p_start','yacc.py',8),
-  ('start -> empty','start',1,'p_start','yacc.py',9),
-  ('end_of_line -> eol','end_of_line',1,'p_end_of_line','yacc.py',13),
-  ('expression -> impressao','expression',1,'p_expression','yacc.py',18),
-  ('expression -> atribuicao','expression',1,'p_expression','yacc.py',19),
-  ('expression -> exec','expression',1,'p_expression','yacc.py',20),
-  ('empty -> <empty>','empty',0,'p_empty','yacc.py',25),
-  ('impressao -> imprimir abre_parentese num fecha_parentese','impressao',4,'p_impressao','yacc.py',29),
-  ('impressao -> imprimir abre_parentese id fecha_parentese','impressao',4,'p_impressao','yacc.py',30),
-  ('executar -> exec abre_parentese id virgula vetor fecha_parentese','executar',6,'p_executar','yacc.py',34),
-  ('vetor -> abre_colchete items fecha_colchete','vetor',3,'p_vetor','yacc.py',38),
-  ('items -> item virgula items','items',3,'p_items','yacc.py',42),
-  ('items -> item','items',1,'p_items','yacc.py',43),
-  ('item -> bin','item',1,'p_item','yacc.py',47),
-  ('item -> id','item',1,'p_item','yacc.py',48),
-  ('item -> entradas_saida','item',1,'p_item','yacc.py',49),
-  ('atribuicao -> tipo id atrib atribuiveis','atribuicao',4,'p_atribuicao','yacc.py',54),
-  ('atribuiveis -> num','atribuiveis',1,'p_atribuiveis','yacc.py',58),
-  ('atribuiveis -> executar','atribuiveis',1,'p_atribuiveis','yacc.py',59),
-  ('atribuiveis -> porta_logica','atribuiveis',1,'p_atribuiveis','yacc.py',60),
-  ('porta_logica -> abre_chave numero_de_entradas virgula tabela_verdade virgula fecha_chave','porta_logica',6,'p_porta_logica','yacc.py',64),
-  ('numero_de_entradas -> ne chave_valor num','numero_de_entradas',3,'p_numero_de_entradas','yacc.py',68),
-  ('tabela_verdade -> tv chave_valor abre_chave items fecha_chave','tabela_verdade',5,'p_tabela_verdade','yacc.py',72),
-  ('entradas_saida -> vetor chave_valor bin','entradas_saida',3,'p_entradas_saida','yacc.py',76),
-  ('tipo -> sinal','tipo',1,'p_tipo','yacc.py',80),
-  ('tipo -> porta_log','tipo',1,'p_tipo','yacc.py',81),
+  ('start -> expression end_of_line','start',2,'p_start','yacc.py',9),
+  ('start -> empty','start',1,'p_start','yacc.py',10),
+  ('end_of_line -> eol start','end_of_line',2,'p_end_of_line','yacc.py',14),
+  ('expression -> impressao','expression',1,'p_expression','yacc.py',19),
+  ('expression -> atribuicao','expression',1,'p_expression','yacc.py',20),
+  ('expression -> exec','expression',1,'p_expression','yacc.py',21),
+  ('empty -> <empty>','empty',0,'p_empty','yacc.py',26),
+  ('impressao -> imprimir abre_parentese num fecha_parentese','impressao',4,'p_impressao','yacc.py',30),
+  ('impressao -> imprimir abre_parentese id fecha_parentese','impressao',4,'p_impressao','yacc.py',31),
+  ('executar -> exec abre_parentese id virgula vetor fecha_parentese','executar',6,'p_executar','yacc.py',35),
+  ('vetor -> abre_colchete items fecha_colchete','vetor',3,'p_vetor','yacc.py',39),
+  ('items -> item virgula items','items',3,'p_items','yacc.py',43),
+  ('items -> item','items',1,'p_items','yacc.py',44),
+  ('item -> bin','item',1,'p_item','yacc.py',48),
+  ('item -> id','item',1,'p_item','yacc.py',49),
+  ('item -> entradas_saida','item',1,'p_item','yacc.py',50),
+  ('atribuicao -> tipo id atrib atribuiveis','atribuicao',4,'p_atribuicao','yacc.py',55),
+  ('atribuiveis -> num','atribuiveis',1,'p_atribuiveis','yacc.py',59),
+  ('atribuiveis -> executar','atribuiveis',1,'p_atribuiveis','yacc.py',60),
+  ('atribuiveis -> porta_logica','atribuiveis',1,'p_atribuiveis','yacc.py',61),
+  ('porta_logica -> abre_chave numero_de_entradas virgula tabela_verdade virgula fecha_chave','porta_logica',6,'p_porta_logica','yacc.py',65),
+  ('numero_de_entradas -> ne chave_valor num','numero_de_entradas',3,'p_numero_de_entradas','yacc.py',69),
+  ('tabela_verdade -> tv chave_valor abre_chave items fecha_chave','tabela_verdade',5,'p_tabela_verdade','yacc.py',73),
+  ('entradas_saida -> vetor chave_valor bin','entradas_saida',3,'p_entradas_saida','yacc.py',77),
+  ('tipo -> sinal','tipo',1,'p_tipo','yacc.py',81),
+  ('tipo -> porta_log','tipo',1,'p_tipo','yacc.py',82),
 ]

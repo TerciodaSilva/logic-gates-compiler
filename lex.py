@@ -79,18 +79,19 @@ Portalogica porta_not = {
 	Numero_de_entradas: 10,
 	Tabela_verdade: {
 	    [0b] : 1b,
-        [1b] : 0b,
+        [1b] : 0b
     },
 };
 
 Sinal variavel1 = Exec(porta_and, [1b, 1b]);
 Sinal variavel2 = Exec(porta_not, [variavel1]);
 Imprimir(variavel2);
-
 '''
 
 # input de teste para o lexer
 lexer.input(data)
+
+lexed_code = ""
 
 # tokenização
 while True:
@@ -98,3 +99,4 @@ while True:
     if not tok:
         break      # No more input
     print(tok)
+    lexed_code += tok.value + " "
